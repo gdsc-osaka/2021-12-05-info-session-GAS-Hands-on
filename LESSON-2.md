@@ -2,20 +2,20 @@
 ここでは、GAS用いて、Google SpreadsheetとGmailを連携させて、メール配信システムを構築します。
 完成するメール配信システムでは、以下のような `{{NAME}}` と `{{EVENT_TITLE}}` をスプレッドシートに登録した文字列に置き換えて送信します。では初めて行きましょう！
 
-> Hello {{NAME}},  
->
-> This is a reminder that you have an upcoming event, "{EVENT_TITLE}".
->
-> Best Regards,
-> GDSC Osaka Univ. Chapter
+```text
+Hello {{NAME}},  
 
-## メール配信システムの実装
+This is a reminder that you have an upcoming event, "{EVENT_TITLE}".
 
-### 事前準備
+Best Regards,
+GDSC Osaka Univ. Chapter
+```
+
+## 2-1: 事前準備
 
 - Google Driveが開けることを確認してください。
 
-### Step.1: 送り先リストの作成
+## 2-2: 送り先リストの作成
 
 メールの送り先を登録したGoogle Spreadsheetを作成します。
 今回はテンプレートを用意したので、それをコピーすることで進めていきます。
@@ -30,12 +30,12 @@
 
 後でメールの配信を確認できるように、"Emails"シートの メールアドレスをあなたが持っているメールアドレスに置き換えましょう。 **(決して他人のアドレスを登録しないように!!)**
 
-### Step.2: GAS Editorを開く
+## 2-3: GAS Editorを開く
 
 次にGASのプログラムを書く、"Editor" を開きます。
 ツールバーの「拡張機能」 タブから、 「App Scripts」 をクリックします。
 
-### Step.3: プログラムの作成
+## 2-4: プログラムの作成
 
 次にプログラムを入力します。今回は運営側で作成したプログラムをコピー&ペーストすることで次に進みます。課題1では、今回コピーしたプログラムを修正してもらいます。そこまでお楽しみはとっておきましょうね！ではやり方を説明します。
 
@@ -45,27 +45,27 @@
 
 プログラムの詳細に関しては、メールの送信を実行してから説明します。
 
-### Step.4: 実行
+## 2-5: 実行
 
 1. ツールバーで、`sendEmails()` を指定し、「実行」をクリックします。
 1. アクセス権限確認のポップアップが出ます。ログインして許可してください。
 1. 送り先のメールの受信フォルダを開き、メールが届いていることを確認してください。
 
-
 ---
-## [課題1] 送信するメールの本文を変えてみよう！
+## 課題1: 送信するメールの本文を変えてみよう！
 
 イベントのリマインダーを送ることができましたが、イベントの開始時刻を書き込むのを忘れてしまいました。本課題では、スプレッドシートとプログラムを修正することでメールにイベントの開始時刻を追加してください。
 
 具体的には以下のようなメールを送ることを想定します。
 
-> Hello 阪大太郎,  
->
-> This is a reminder that you have an upcoming event, "GDSC説明会", from "2021年12月5日 13:30".
->
-> Best Regards,
-> GDSC Osaka Univ. Chapter
+```text
+Hello 阪大太郎,  
 
+This is a reminder that you have an upcoming event, "GDSC説明会", from "2021年12月5日 13:30".
+
+Best Regards,
+GDSC Osaka Univ. Chapter
+```
 
 <details>
 <summary>ヒント!</summary>
