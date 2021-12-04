@@ -10,12 +10,12 @@ Emails
 -----------------------------------------------------
 
 
-Hello {name},  
+Hello {{NAME}},  
 
-This is a reminder that you have an upcoming {title} class.
+This is a reminder that you have an upcoming event, {{EVENT_TITLE}}.
 
 Best Regards,
-Chicago Computer Classes
+GDSC Osaka Univ. Chapter
 
 
 Template
