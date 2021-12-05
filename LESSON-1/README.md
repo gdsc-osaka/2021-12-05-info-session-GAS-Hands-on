@@ -16,7 +16,7 @@ Workshop参加者はスピーカーの画面を参考に操作してください
 
 1. Google Driveを開く
 1. 左上の「新規」ボタンから、「その他 >> Google App Script」 を選択し、Script Editorを開きます。 (図1-1)
-1. [01_introduction_to_JS.js](./01_introduction_to_JS.js) を別のタブで開き、中身をEditorにコピーします。
+1. [01_introduction_to_JS.js](./introduction_to_JS.js) を別のタブで開き、中身をEditorにコピーします。
 1. ツールバーから実行したい関数を選択し、関数を実行します。(図1-2)
 1. 実行結果が画面下部に出力されます。
 

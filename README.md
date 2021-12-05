@@ -1,12 +1,12 @@
 # GAS Hands-on Workshop @ GDSC Osaka Univ. Information Session
 GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用するサンプルコードや、課題の説明をまとめたリポジトリです。
 
-
 ## Event Information
+
 - Title: Information Session / 説明会
 - Date: 2021.12.05 13:30
 - Place: Online
-- https://gdsc.community.dev/e/m95u9a/
+- Event Page: https://gdsc.community.dev/e/m95u9a/
 
 本ワークショップでは、Google App Script (GAS) を用いて、名簿に登録された宛先に対して、文面を一人一人に合わせてカスタマイズしたメールを配信するシステムをみなさんと一緒に作成します。
 
@@ -23,9 +23,9 @@ GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用�
 
 ## Lessons
 
-- [Lesson.1: Javascriptの基礎知識](./LESSON-1.md)
-- [Lesson.2: GASを用いたメール配信システム](./LESSON-2.md)
-- [Lesson.3: (スキルアップ問題) アンケートの回答確認とリマインダーの自動送信](./LESSON-2.md)
+- [Lesson.1: Javascriptの基礎知識](./LESSON-1)
+- [Lesson.2: GASを用いたメール配信システム](./LESSON-2)
+- [Lesson.3: (スキルアップ問題) アンケートの回答確認とリマインダーの自動送信](./LESSON-3)
 
 ## Matrials
 
