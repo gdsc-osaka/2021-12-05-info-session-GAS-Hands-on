@@ -1,43 +1,65 @@
-function sendEmails(){
-  
-  /*ActiveなSpreadsheet(今開いているSpreadsheet)の「Emails」というSheetを取得
-   「Emails」の Sheetの情報を示す ss という変数を定義　*/
-  var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Emails");
+function canSendAllEmail(numEntry){
+  // リストに登録されているアドレス全てにメールを送信可能か確認する関数
+  // NOTE: Gmailが1日で送信可能なメールの数は100
 
-  var lr = ss.getLastRow();　// ss (Emailのシートを示す) に記入されている行数を取得
-  Logger.log(lr);　//行数をlogに出力して確認
+  // 今日送信可能なメールの残数を取得
+  let emailQuotaRemaining = MailApp.getRemainingDailyQuota();
+  Logger.log("本日送信可能メール数:", emailQuotaRemaining);
 
-
-  //「Template」という名前の Sheet の１行目1列目の値を取得
-  var templateText = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Template").getRange(1, 1).getValue();
-  
-  //本日、残っている送信可能なメールの数を取得　（Gmailが毎日送信可能なメールの数は100）
-  var quotaLeft = MailApp.getRemainingDailyQuota();
-  Logger.log(quotaLeft) //残っている送信可能なメールの数を出力して確認
-
-　/* 行数-1（シート上に入力されているメールアドレスの数）が送信可能なメール数より多いか if文で判定
-  ・送信可能なメール数より多い場合 --> エラーメッセージを出力
-  ・送信可能なメール数以下の場合 --> else{}内を実行 */
-  if ((lr-1) > quotaLeft){
-    Logger.log("You have " + quotaLeft + " left and you're tring to send " + (lr-1) + " emails. Emails were not sent.");
+  // 確認 (残数的に全件送信可能 ==> true, 不可 ==> false)
+  if (numEntry < emailQuotaRemaining){
+    return true;
   } 
+  return false;
+}
+
+function sendEmails(){
+  // B1: 本文のテンプレートを取得 (シート "Template" の１行目1列目の値)
+  // NOTE: SpreadsheetApp.getActiveSpreadsheet() ... App Scriptが紐付いているスプレッドシートを取得する。
+  // NOTE: .getSheetByName(<シート名>) ... 引数で渡した名前のシートオを取得
+  // NOTE: .getRange(<row>, <col>).getValue() ... <row>行<col>列目の値を取得
+  var template = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Template").getRange(1, 1).getValue();
+  Logger.log("本文のテンプレート: %s", template);
   
-  else{
-    for (var i=2;i<=lr;i++){ //シートの２行目から最終行まで以下を実行
+  // B2: シート "Emails" を取得し、変数ssに格納
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Emails"); // シート"Emails" を示す変数
 
-      var currentEmail = ss.getRange(i, 1).getValue(); //１列目の値（Email）を取得
-      var currentClassTitle = ss.getRange(i, 3).getValue(); //3列目の値（Class）を取得
-      var currentName = ss.getRange(i,2).getValue(); //2列目の値（Name）を取得
+  // B2: 登録されているメールが送れるか確認
+  // NOTE: ss.getLastRow(): シートに記入されている行数を取得。Header分の1を引く。
+  var numEntry = ss.getLastRow() - 1;
+  Logger.log("送信したいメール件数: %d", numEntry);
+  if (!canSendAllEmail(numEntry)){
+    // NOTE: 送信可能なメール数より多い場合 --> エラーメッセージを出力
+    console.error("送信可能メール数の残数が足りません!");
+    return;
+  }
+  
+  // B4: メールを送信
+  for (let i = 0; i < numEntry; i++){ //シートの２行目から最終行まで以下を実行
+    Logger.log("== %d / %d 件目 ==", i+1, numEntry);
 
-      // 「Template」シート内のテンプレートテキストの "{name}"と "{title}" をそれぞれ上記で得た Name と Class に置き換え
-      var messageBody = templateText.replace("{name}", currentName).replace("{title}", currentClassTitle);
-      Logger.log(messageBody); // 置き換えた後のテキストを出力
+    // B4-1
+    let rowIndex = i + 2;
+    let emailAddr = ss.getRange(rowIndex, 1).getValue();       // １列目の値（Email）を取得
+    let name = ss.getRange(rowIndex,2).getValue();        // 2列目の値（Name）を取得
+    let eventTitle = ss.getRange(rowIndex, 3).getValue(); // 3列目の値（Class）を取得
 
-      /* Email(アドレス)に「Reminder: [Class] Upcoming Class」という件名でテンプレートの中身を置き換えたテキストを本文とするメールを送信
-         (MailApp.sendEmail(アドレス, 件名, 本文) ：　指定したアドレスに件名と本文を指定してメールを送信)*/
-      //MailApp.sendEmail(currentEmail, "Reminder: " + currentClassTitle + "Upcoming Class", messageBody);　
+    // B4-2: プレースホルダに変数を代入し、本部を作成
+    let msgBody = template
+      .replace("{{NAME}}", name)
+      .replace("{{EVENT_TITLE}}", eventTitle);
+    Logger.log("送信する本文:");
+    Logger.log(msgBody); // 置き換えた後のテキストを出力
 
-    } //close for statement（ここで繰り返し文が終了）
-  } //close else statement（条件分岐のelseの中身がここで終了）
+    // B4-3: 件名を作成
+    let emailSubject = `Event Reminder: ${eventTitle}`;
+    Logger.log("件名: %s", emailSubject);
 
-}//関数sendEmailsがここで終了
+    // B4-4: 送信
+    MailApp.sendEmail({
+      to: emailAddr, // Toのアドレス 
+      subject: emailSubject, // 件名
+      body: msgBody, // 本文
+    });
+  }
+}
