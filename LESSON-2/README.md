@@ -26,9 +26,28 @@ GDSC Osaka Univ. Chapter
 
 コピーしたものを見ていただければ分かると思いますが、このスプレッドシートは ”Emails” と "Template" の2つのシートを持ちます。
 "Emails"には、宛先のメールアドレス (Email)、氏名 (Name)、イベント名 (Event) の2つカラムがあります。
-"Template" のシートでは、 1Aのセルに送る文面のテンプレートが記入されています。送信する文面を変える場合は、このセルの内容を変更します。スプレッドシートに登録した値に変えたい部分は、2重の`{{ }}` で変数名を囲みます。
+"Template" のシートでは、 1Aのセルに送る文面のテンプレートが記入されています。送信する文面を変える場合は、このセルの内容を変更します。スプレッドシートに登録した値に変えたい部分は、2重の`{{ }}` で変数名を囲みます。テンプレート内の変数で着替える部分をプレースホルダと言います。
 
 後でメールの配信を確認できるように、"Emails"シートの メールアドレスをあなたが持っているメールアドレスに置き換えましょう。 **(決して他人のアドレスを登録しないように!!)**
+
+**Sample.1: Sheet "Emails":**
+
+| Email                 | Name   | Event               |
+|-----------------------|--------|---------------------|
+| xxxx+ichiro@gmail.com | Ichiro | Cloud Study Jam     |
+| xxxx+jiro@gmail.com   | Jiro   | Information Session |
+| xxxx+saburo@gmail.com | Saburo | Cloud Study Jam     |
+
+**Sample.2: Sheet "Template" (A1のセル):**
+
+```
+"Hello {{NAME}},  
+
+This is a reminder that you have an upcoming event, {{EVENT_TITLE}}.
+
+Best Regards,
+GDSC Osaka Univ. Chapter"
+```
 
 ## 2-3: GAS Editorを開く
 
@@ -39,7 +58,7 @@ GDSC Osaka Univ. Chapter
 
 次にプログラムを入力します。今回は運営側で作成したプログラムをコピー&ペーストすることで次に進みます。課題1では、今回コピーしたプログラムを修正してもらいます。そこまでお楽しみはとっておきましょうね！ではやり方を説明します。
 
-1. [02_member_list.js](./member_list.js) を別のタブで開き内容をコピーします。
+1. [member_list.js](./member_list.js) を別のタブで開き内容をコピーします。
 1. GASのEditorを開きペーストします。
 1. 画面上部の保存ボタン (フロッピーディスクのアイコン、実行の左) をクリックします。
 
@@ -52,16 +71,22 @@ GDSC Osaka Univ. Chapter
 1. 送り先のメールの受信フォルダを開き、メールが届いていることを確認してください。
 
 ---
+
 ## 課題1: 送信するメールの本文を変えてみよう！
 
-イベントのリマインダーを送ることができましたが、イベントの開始時刻を書き込むのを忘れてしまいました。本課題では、スプレッドシートとプログラムを修正することでメールにイベントの開始時刻を追加してください。
+イベントのリマインダーを送ることができましたが、イベントの開始時刻を書き込むのを忘れてしまいました。
+本課題では、スプレッドシートとプログラムを修正することでメールにイベントの開始時刻を追加してください。
+イベントの開始時刻は以下の通りです。
 
-具体的には以下のようなメールを送ることを想定します。
+- Cloud Study Jam: 2021/11/28 13:30
+- Information Session: 2021/12/05 13:00
+
+具体的には以下のようなメールを送ることを想定します。"GDSC説明会"の後に開催日が追記されているメールとなっています。
 
 ```text
-Hello 阪大太郎,  
+Hello Ichiro,  
 
-This is a reminder that you have an upcoming event, "GDSC説明会", from "2021年12月5日 13:30".
+This is a reminder that you have an upcoming event, "Cloud Study Jam", from "2021/11/28 13:30".
 
 Best Regards,
 GDSC Osaka Univ. Chapter
@@ -78,3 +103,9 @@ GDSC Osaka Univ. Chapter
 </details>
 
 課題に成功したら、是非Slackで報告してくださいね！
+
+----
+
+## References
+
+- [Google App Script - Docs - Class MailApp](https://developers.google.com/apps-script/reference/mail/mail-app)
