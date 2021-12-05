@@ -21,7 +21,7 @@ GDSC Osaka Univ. Chapter
 今回はテンプレートを用意したので、それをコピーすることで進めていきます。
 手順は以下の通りです。
 
-1. [Google Spreadsheet - Member list](https://docs.google.com/spreadsheets/d/1jBdk5Qa4Ke-THKRbrr4khBGsv1SAuo7bl7DudcuBTNs/edit?usp=sharing) を新しいタブで開く。
+1. [Google Spreadsheet - Member list](https://docs.google.com/spreadsheets/d/1m03lQ-CXIlanE46Eh7f3xgeGypU5QIm-Yo7cea3ggDk/edit?usp=sharing) を新しいタブで開く。
 1. 左上の「ファイル」タブ から 「コピーを作成」をクリックし、自分のドライブにスプレッドシートのコピーを作成。
 
 コピーしたものを見ていただければ分かると思いますが、このスプレッドシートは ”Emails” と "Template" の2つのシートを持ちます。

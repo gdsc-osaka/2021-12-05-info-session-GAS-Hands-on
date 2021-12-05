@@ -29,10 +29,14 @@ GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用�
 
 ## Matrials
 
+### Lesson.1
+
+- [Script - introduction_to_JS.js](./LESSON-1/introduction_to_JS.md)
+
 ### Lesson.2
 
-- [Google Spreadsheet - Member list](https://docs.google.com/spreadsheets/d/1jBdk5Qa4Ke-THKRbrr4khBGsv1SAuo7bl7DudcuBTNs/edit?usp=sharing) 
-- [Script - 02_member_list.js](./02_member_list.js)
+- [Google Spreadsheet - Member list](https://docs.google.com/spreadsheets/d/11if_trawTvn-O8zdC1hOptxXVftLoz0cV1wU_DKxmyw/edit?usp=sharing)
+- [App Script - member_list.js](./LESSON-2/member_list.js)
 
 ### Lesson.3
 
