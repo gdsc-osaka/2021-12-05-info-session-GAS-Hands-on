@@ -44,7 +44,7 @@ function sendEmails(){
     let name = ss.getRange(rowIndex,2).getValue();        // 2列目の値（Name）を取得
     let eventTitle = ss.getRange(rowIndex, 3).getValue(); // 3列目の値（Class）を取得
 
-    // B4-2: プレースホルダに変数を代入し、本部を作成
+    // B4-2: プレースホルダに変数を代入し、本文を作成
     let msgBody = template
       .replace("{{NAME}}", name)
       .replace("{{EVENT_TITLE}}", eventTitle);

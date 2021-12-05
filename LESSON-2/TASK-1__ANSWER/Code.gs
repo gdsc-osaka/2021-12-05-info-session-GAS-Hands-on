@@ -36,13 +36,13 @@ function canSendAllEmail(numEntry){
       let emailAddr = ss.getRange(rowIndex, 1).getValue();       // １列目の値（Email）を取得
       let name = ss.getRange(rowIndex,2).getValue();        // 2列目の値（Name）を取得
       let eventTitle = ss.getRange(rowIndex, 3).getValue(); // 3列目の値（Class）を取得
-      let startTime = ss.getRange(rowIndex, 4).getValue();  // 4列目の値（StartTime）を取得
+      let startTime = ss.getRange(rowIndex, 4).getValue();  // 4列目の値（StartTime）を取得 <-- NEW!
   
-      // B4-2: プレースホルダに変数を代入し、本部を作成
+      // B4-2: プレースホルダに変数を代入し、本文を作成
       let msgBody = template
         .replace("{{NAME}}", name)
         .replace("{{EVENT_TITLE}}", eventTitle)
-        .replace("{{START_TIME}}", startTime);
+        .replace("{{START_TIME}}", startTime); // <-- NEW!
       Logger.log("送信する本文:");
       Logger.log(msgBody); // 置き換えた後のテキストを出力
   
