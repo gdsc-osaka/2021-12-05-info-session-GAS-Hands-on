@@ -27,12 +27,22 @@ GDSC Osaka Univ. Chapter
 
 ## Step.2: App Scriptの編集
 
-[編集後のスクリプト](./answer_script_task1.js)
+[member_list.js (編集後)](./answer_script_task1.js)
 
 以下に編集のポイントをまとめます。
 
-- B4-1: 最後に `StartTime` を取得する処理を追記
-- B4-2: `START_TIME` を置き換える処理を追記
+```js
+# B4-1: 最後に `StartTime` を取得する処理を追記
+let startTime = ss.getRange(rowIndex, 4).getValue();  // 4列目の値（StartTime）を取得
+```
+
+```js
+# B4-2: `START_TIME` を置き換える処理を追記
+let msgBody = template
+        .replace("{{NAME}}", name)
+        .replace("{{EVENT_TITLE}}", eventTitle)
+        .replace("{{START_TIME}}", startTime);
+```
 
 ## 結果
 
