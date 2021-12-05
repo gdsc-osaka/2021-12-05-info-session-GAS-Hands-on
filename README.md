@@ -40,4 +40,4 @@ GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用�
 
 ### Lesson.3
 
-- [Google Spreadsheet - Test_form_response](https://docs.google.com/spreadsheets/d/10zmHFS31KOl7HFMwV6qnRGUXCkLGbt8HK38tEH7ZtX8/edit?usp=sharing)
+- [Google Spreadsheet - L3_form_response](https://docs.google.com/spreadsheets/d/10zmHFS31KOl7HFMwV6qnRGUXCkLGbt8HK38tEH7ZtX8/edit?usp=sharing)
