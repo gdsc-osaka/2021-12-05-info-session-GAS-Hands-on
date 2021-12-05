@@ -11,7 +11,7 @@ Lesson.2では、名簿に書かれた全員にメールを送る方法を学習
 
 参考:
 - [Google Form - TBA](#)
-- [Google Spreadsheet - TBA](#) 
+- [Google Spreadsheet - L3_form_responses](https://docs.google.com/spreadsheets/d/10zmHFS31KOl7HFMwV6qnRGUXCkLGbt8HK38tEH7ZtX8/edit?usp=sharing)
   - 回答記録用
 
 ## 課題説明

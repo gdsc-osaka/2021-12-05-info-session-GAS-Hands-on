@@ -31,7 +31,7 @@ GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用�
 
 ### Lesson.1
 
-- [Script - introduction_to_JS.js](./LESSON-1/introduction_to_JS.md)
+- [Script - introduction_to_JS.js](./LESSON-1/introduction_to_JS.js)
 
 ### Lesson.2
 
@@ -40,4 +40,4 @@ GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用�
 
 ### Lesson.3
 
-- [Google Spreadsheet - Test_form_response](https://docs.google.com/spreadsheets/d/1nikD5yFJipkauKGIXhYKZ1DQn9syAe64xN8hHcVPdBM/edit#gid=506049203)
+- [Google Spreadsheet - Test_form_response](https://docs.google.com/spreadsheets/d/10zmHFS31KOl7HFMwV6qnRGUXCkLGbt8HK38tEH7ZtX8/edit?usp=sharing)
