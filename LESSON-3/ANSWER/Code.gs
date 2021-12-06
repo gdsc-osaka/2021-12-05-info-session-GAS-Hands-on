@@ -10,11 +10,13 @@ var MSG_TEMPLATE = "{{NAME}}さん\n\nGoogle Formへの回答を忘れていま�
 
 
 /**
- * 入力された名前リストに対して、Google Formの回答があるか確認し、membersと同じ長さのbool値の配列を返す。
+ * メンバーデータ (members)に含まれる一人一人の名前が、回答シートにあるか確認します。
+ * 回答が見つかれば、 回答が登録されている行番号を、未解答の場合は-1を格納した配列を返します。
  * 配列の検索には indexOf()と、Underscore.zip.apply()を用いる。
  * 
  * @param {Array} シート "members" から読み出したデータ (2D Array)
  * @param {Array} シート "Form Response" から読み出したデータ(2D Array) 
+ * @return {Array} 回答が登録されている行番号のリスト。
  */
 function getResponsRows(members, responses){
   // responsesを転地し、名前のカラムに対する Arr.indexOf() が使えるようにする。
@@ -78,7 +80,12 @@ function getNoResponseMemberList(members, responseRows){
   return notRespondesMembers;
 }
 
-
+/**
+ * リストに登録されているアドレス全てにメールを送信可能か確認する。
+ * NOTE: Gmailが1日で送信可能なメールの数は100
+ * @param numEntry 
+ * @returns {bool}
+ */
 function canSendAllEmail(numEntry){
   // リストに登録されているアドレス全てにメールを送信可能か確認する関数
   // NOTE: Gmailが1日で送信可能なメールの数は100
@@ -96,7 +103,7 @@ function canSendAllEmail(numEntry){
 
 
 /**
- * メールを送信
+ * メンバーのリスト(氏名とEmail)を受け取り、個別にメールを送信する。
  * 
  * @param {Array} members
  */
@@ -161,6 +168,7 @@ function main(){
 //   Unit Test 
 // =============
 function testGetResponsRows(){
+  // Input
   var members = [
     ["Ichiro", "xxxx+ichiro@gmail.com"],
     ["Jiro",  "xxxx+jiro@gmail.com"],
@@ -173,9 +181,39 @@ function testGetResponsRows(){
     ["12/5/2021 19:53:42", 	"Jiro", "Information Session"],
     ["12/5/2021 19:53:49",  "Saburo", "Cloud Study Jam"],
   ];
-  var output = [0, 1, 2, -1, -1];
+
+  // Output
+  var outputExpected = [0, 1, 2, -1, -1];
+
   output = getResponsRows(members, responses);
   Logger.log("Unit-Test: output=%s", output);
+  // >> [0, 1, 2, -1, -1]
+}
+
+function testGetNoResponseMemberList(){
+  // Input
+  var members = [
+    ["Ichiro", "xxxx+ichiro@gmail.com"],
+    ["Jiro",  "xxxx+jiro@gmail.com"],
+    ["Saburo", "xxxx+saburo@gmail.com"],
+    ["Shiro", "xxxx+shiro@gmail.com"],
+    ["Goro", "xxxx+goro@gmail.com"],
+  ];
+  var responses = [
+    ["12/5/2021 19:53:35", "Ichiro", 	"Cloud Study Jam"],
+    ["12/5/2021 19:53:42", 	"Jiro", "Information Session"],
+    ["12/5/2021 19:53:49",  "Saburo", "Cloud Study Jam"],
+  ];
+
+  // Output
+  var outputExpected = [
+    ["Shiro", "xxxx+shiro@gmail.com"],
+    ["Goro", "xxxx+goro@gmail.com"],
+  ];
+
+  output = getResponsRows(members, responses);
+  Logger.log("Unit-Test: output=%s", output);
+  Logger.log("Unit-Test: outputExpected=%s", outputExpected);
 }
 
 function testMarkResponseExists(){

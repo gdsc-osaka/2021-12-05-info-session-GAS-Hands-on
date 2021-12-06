@@ -41,3 +41,10 @@ GAS Hands-on Workshop (@GDSC 大阪大学支部 Information Session ) で使用�
 ### Lesson.3
 
 - [Google Spreadsheet - L3_form_response](https://docs.google.com/spreadsheets/d/10zmHFS31KOl7HFMwV6qnRGUXCkLGbt8HK38tEH7ZtX8/edit?usp=sharing)
+
+
+### その他
+
+- [JSDocの書き方・出力メモ
+](https://qiita.com/zaburo/items/c90ab1a3d7751f610d27)
+- [JSDocリファレンス](https://www.typescriptlang.org/ja/docs/handbook/jsdoc-supported-types.html)
