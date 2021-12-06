@@ -174,6 +174,7 @@ function testSendEmails(){
 
   sendEmails(notRespondesMembers);
   Logger.log("Unit-Test: Done!");
+  // 出力は無し。メールが2件届いたか確認してください！
 }
 ```
 
